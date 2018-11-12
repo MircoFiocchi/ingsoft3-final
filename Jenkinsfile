@@ -8,11 +8,20 @@ pipeline {
       }
     }
     stage('Test') {
-      environment {
-        CI = 'true'
-      }
-      steps {
-        sh './jenkins/scripts/test.sh'
+      parallel {
+        stage('Firefox') {
+          environment {
+            CI = 'true'
+          }
+          steps {
+            sh 'mvn clean verify -Dbrowser=firefox -Dheadless=false'
+          }
+        }
+        stage('Chrome') {
+          steps {
+            sh 'mvn clean verify -Dbrowser=chrome -Dheadless=false'
+          }
+        }
       }
     }
   }
