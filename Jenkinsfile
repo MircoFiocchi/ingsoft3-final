@@ -4,7 +4,9 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        sh './mvnw package'
+        sh '''docker version
+
+./mvnw package'''
       }
     }
     stage('Test') {
