@@ -10,9 +10,7 @@ pipeline {
     stage('Test') {
       parallel {
         stage('Firefox') {
-          environment {
-            CI = 'true'
-          }
+          agent any
           steps {
             sh 'mvn clean verify -Dbrowser=firefox -Dheadless=false'
           }
