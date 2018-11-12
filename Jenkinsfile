@@ -5,7 +5,6 @@ pipeline {
       agent any
       steps {
         sh './mvnw package'
-        sh 'npm install'
       }
     }
     stage('Deploy') {
