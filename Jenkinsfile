@@ -7,9 +7,12 @@ pipeline {
         sh './mvnw package'
       }
     }
-    stage('Deploy') {
+    stage('Test') {
+      environment {
+        CI = 'true'
+      }
       steps {
-        sh 'echo \'Deploying\''
+        sh './jenkins/scripts/test.sh'
       }
     }
   }
