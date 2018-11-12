@@ -6,9 +6,9 @@ pipeline {
         sh './mvnw package'
       }
     }
-    stage('Deploy'){
+    stage('Deploy') {
       steps {
-         echo 'Deploying'
+        sh 'echo \'Deploying\''
       }
     }
   }
