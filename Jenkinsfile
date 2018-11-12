@@ -12,12 +12,16 @@ pipeline {
         stage('Firefox') {
           agent any
           steps {
-            sh 'mvn clean verify -Dbrowser=firefox -Dheadless=false'
+            sh '''export PATH=/opt/apache-maven-3.5.4/bin:$PATH
+
+mvn clean verify -Dbrowser=firefox -Dheadless=false'''
           }
         }
         stage('Chrome') {
           steps {
-            sh 'mvn clean verify -Dbrowser=chrome -Dheadless=false'
+            sh '''export PATH=/opt/apache-maven-3.5.4/bin:$PATH
+
+mvn clean verify -Dbrowser=chrome -Dheadless=false'''
           }
         }
       }
