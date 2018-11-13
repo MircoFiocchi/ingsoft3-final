@@ -1,11 +1,11 @@
-FROM jenkins:1.596
+FROM openjdk:8u171-jre-alpine
 
-USER root
-RUN apt-get update \
-      && apt-get install -y sudo \
-      && rm -rf /var/lib/apt/lists/*
-RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+RUN apk add --no-cache bash
 
-USER jenkins
-COPY plugins.txt /usr/share/jenkins/plugins.txt
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
+WORKDIR /opt
+
+COPY target/ejemplo.jar .
+
+ENV JAVA_OPTS="-Xms32m -Xmx128m"
+
+ENTRYPOINT exec java $JAVA_OPTS -jar ejemplo.jar
