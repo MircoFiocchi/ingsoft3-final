@@ -9,10 +9,22 @@ pipeline {
 ./mvnw package'''
       }
     }
+    stage('Docker') {
+      agent any
+      steps {
+        sh '''docker build -t pet-clinic .
+
+docker tag pet-clinic nicolaskobelt/ingsoft3_final:latest
+
+docker login -u=nicolaskobelt -p=Noworries19
+
+docker push nicolaskobelt/ingsoft3_final:latest
+'''
+      }
+    }
     stage('Test') {
       parallel {
         stage('Firefox') {
-          agent any
           steps {
             sh '''export PATH=/opt/apache-maven-3.5.4/bin:$PATH
 
@@ -23,14 +35,9 @@ mvn clean verify -Dbrowser=firefox -Dheadless=false'''
           steps {
             sh '''export PATH=/opt/apache-maven-3.5.4/bin:$PATH
 
-mvn clean verify -Dbrowser=chrome -Dheadless=false'''
+mvn clean verify -Dbrowser=Chrome -Dheadless=false'''
           }
         }
-      }
-    }
-    stage('Imagen') {
-      steps {
-        sh 'docker build -t test-java .'
       }
     }
   }
