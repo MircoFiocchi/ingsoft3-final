@@ -12,7 +12,7 @@ pipeline {
     stage('Docker') {
       agent any
       steps {
-        sh '''mvn clean package docker build -t pet-clinic .
+        sh '''docker build -f pet-clinic .
 
 docker tag pet-clinic nicolaskobelt/ingsoft3_final:latest
 
