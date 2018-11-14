@@ -4,7 +4,7 @@ RUN apk add --no-cache bash
 
 WORKDIR /opt
 
-COPY ‎⁨/nicolaskobelt⁩/data⁩/jenkins⁩/workspace⁩/ingsoft3-final⁩/target⁩/spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar .
+COPY ‎⁨spring-petclinic-master/target⁩/spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar .
 
 ENV JAVA_OPTS="-Xms32m -Xmx128m"
 
