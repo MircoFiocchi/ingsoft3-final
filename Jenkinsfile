@@ -18,7 +18,7 @@ docker tag pet-clinic nicolaskobelt/ingsoft3_final:latest
 
 docker login -u=nicolaskobelt -p=Noworries19
 
-docker push nicolaskobelt/ingsoft3_final:latest
+docker push nicolaskobelt/ingsoft3_final:latest
 '''
       }
     }
