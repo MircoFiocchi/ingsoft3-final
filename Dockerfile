@@ -2,7 +2,7 @@ FROM openjdk:8u171-jre-alpine
 
 RUN apk add --no-cache bash
 
-WORKDIR /target
+WORKDIR /opt
 
 COPY ‎⁨target⁩/spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar .
 
