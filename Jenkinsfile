@@ -4,15 +4,33 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        sh './mvnw package'
+        sh '''docker version
+
+./mvnw package'''
       }
     }
     stage('Test') {
-      environment {
-        CI = 'true'
+      parallel {
+        stage('Firefox') {
+          agent any
+          steps {
+            sh '''export PATH=/opt/apache-maven-3.5.4/bin:$PATH
+
+mvn clean verify -Dbrowser=firefox -Dheadless=false'''
+          }
+        }
+        stage('Chrome') {
+          steps {
+            sh '''export PATH=/opt/apache-maven-3.5.4/bin:$PATH
+
+mvn clean verify -Dbrowser=chrome -Dheadless=false'''
+          }
+        }
       }
+    }
+    stage('Deploy') {
       steps {
-        sh './jenkins/scripts/test.sh'
+        sh 'echo "deploy"'
       }
     }
   }
