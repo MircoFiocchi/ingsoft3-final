@@ -13,7 +13,9 @@ pipeline {
     stage('Docker') {
       agent any
       steps {
-        sh '''docker build -t pet-clinic .
+        sh '''pwd
+ls
+docker build -t pet-clinic .
 
 docker tag pet-clinic nicolaskobelt/ingsoft3_final:latest
 
