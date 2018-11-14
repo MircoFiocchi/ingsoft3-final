@@ -28,9 +28,9 @@ mvn clean verify -Dbrowser=chrome -Dheadless=false'''
         }
       }
     }
-    stage('Deploy') {
+    stage('Imagen') {
       steps {
-        sh 'echo "deploy"'
+        sh 'docker build -t test-java .'
       }
     }
   }
