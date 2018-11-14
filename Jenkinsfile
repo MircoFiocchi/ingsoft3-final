@@ -6,7 +6,9 @@ pipeline {
       steps {
         sh '''docker version
 
-./mvnw package'''
+./mvnw package
+
+mvn clean verify -Dbrowser=firefox -Dheadless=false'''
       }
     }
     stage('Docker') {
@@ -19,6 +21,11 @@ docker tag pet-clinic nicolaskobelt/ingsoft3_final:latest
 docker login -u=nicolaskobelt -p=Noworries19
 
 docker push nicolaskobelt/ingsoft3_final:latest'''
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'echo "deploy"'
       }
     }
   }
