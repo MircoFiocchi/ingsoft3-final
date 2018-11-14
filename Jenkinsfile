@@ -7,8 +7,7 @@ pipeline {
         sh '''docker version
 
 ./mvnw package
-
-mvn clean verify -Dbrowser=firefox -Dheadless=false'''
+'''
       }
     }
     stage('Docker') {
