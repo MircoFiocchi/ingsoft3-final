@@ -18,26 +18,8 @@ docker tag pet-clinic nicolaskobelt/ingsoft3_final:latest
 
 docker login -u=nicolaskobelt -p=Noworries19
 
-docker pushÂ nicolaskobelt/ingsoft3_final:latest
+docker push nicolaskobelt/ingsoft3_final:latest
 '''
-      }
-    }
-    stage('Test') {
-      parallel {
-        stage('Firefox') {
-          steps {
-            sh '''export PATH=/opt/apache-maven-3.5.4/bin:$PATH
-
-mvn clean verify -Dbrowser=firefox -Dheadless=false'''
-          }
-        }
-        stage('Chrome') {
-          steps {
-            sh '''export PATH=/opt/apache-maven-3.5.4/bin:$PATH
-
-mvn clean verify -Dbrowser=Chrome -Dheadless=false'''
-          }
-        }
       }
     }
   }
